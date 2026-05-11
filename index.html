@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Academy - Panduan Lengkap dari Nol</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.7;
+      color: #fff;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    }
+
+    /* Header */
+    header {
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(20px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #25d366, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                  radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 40%, rgba(120,219,255,0.3) 0%, transparent 50%);
+      background-size: cover;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: 1.5rem;
+      background: linear-gradient(45deg, #fff, #25d366, #00d4ff, #f39c12);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 20px #25d366); }
+      100% { filter: drop-shadow(0 0 30px #00d4ff); }
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(45deg, #25d366, #00d4ff);
+      color: white;
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .cta-button:hover::before { left: 100%; }
+    .cta-button:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 25px 50px rgba(37, 211, 102, 0.6);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 120px 0;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(45deg, #fff, #f39c12);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #25d366, #f39c12);
+      border-radius: 2px;
+    }
+
+    /* Content Cards */
+    .content-card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #25d366, #00d4ff, #f39c12, #e74c3c);
+      background-size: 300% 100%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .content-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      border-color: rgba(37, 211, 102, 0.5);
+    }
+
+    /* Trading Grid */
+    .trading-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .trading-item {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border-left: 5px solid;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .trading-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .forex { border-left-color: #3498db; }
+    .saham { border-left-color: #f1c40f; }
+    .kripto { border-left-color: #25d366; }
+    .komoditas { border-left-color: #e67e22; }
+
+    .trading-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    /* Table */
+    .comparison-container {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      margin: 3rem 0;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1.8rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .comparison-table th {
+      background: linear-gradient(135deg, rgba(243,156,18,0.3), rgba(243,156,18,0.1));
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .spot-col { 
+      background: linear-gradient(135deg, rgba(37,211,102,0.2), rgba(37,211,102,0.1));
+      border-left: 5px solid #25d366;
+    }
+    .futures-col { 
+      background: linear-gradient(135deg, rgba(231,76,60,0.2), rgba(231,76,60,0.1));
+      border-left: 5px solid #e74c3c;
+    }
+
+    /* Feature Boxes */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-box {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(15px);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .feature-box:hover {
+      transform: translateX(15px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .leverage-box { border-left: 6px solid #3498db; }
+    .margin-box { border-left: 6px solid #e67e22; }
+    .spot-box { border-left: 6px solid #25d366; }
+    .futures-box { border-left: 6px solid #e74c3c; }
+
+    /* Apps */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .app-card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.4s ease;
+    }
+
+    .app-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    }
+
+    .app-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    /* Warning */
+    .warning-box {
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      border: 2px solid #ff6b6b;
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .warning-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* WhatsApp Section */
+    .whatsapp-hero {
+      background: linear-gradient(135deg, #25d366 0%, #00d4ff 50%, #25d366 100%);
+      padding: 5rem 0;
+      text-align: center;
+      margin: 5rem -2rem 2rem;
+      border-radius: 30px;
+      transform: skewY(-3deg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .whatsapp-hero > * {
+      transform: skewY(3deg);
+    }
+
+    .whatsapp-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1.5" fill="white" opacity="0.05"/><circle cx="50" cy="10" r="0.8" fill="white" opacity="0.08"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 0 1.5rem; }
+      section { padding: 80px 0; }
+      h2 { font-size: 2rem; }
+      .trading-grid, .feature-grid, .apps-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .animate.active {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">
+        📈 <strong>Trading Academy</strong>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div style="max-width: 800px; padding: 0 2rem;">
+      <h1 class="animate active">YUK KENALAN APA SIH ITU TRADING</h1>
+      <p style="font-size: 1.4rem; margin-bottom: 2.5rem; opacity: 0.95;">
+        <strong>BASIC Trading</strong>
+      </p>
+      <a href="https://wa.me/qr/WA7MLAZCEJB7I1?text=Halo%20kak,%20saya%20mau%20tanya%20tentang%20edukasi%20trading%20level%200" class="cta-button">
+        <i class="fab fa-whatsapp"></i> Yuk Chat Sekarang!
+      </a>
+    </div>
+  </section>
+
+  <!-- Pengenalan Trading -->
+  <section class="container">
+    <div class="content-card animate">
+      <h2>Pengenalan Trading</h2>
+      <p style="font-size: 1.25rem; text-align: center; max-width: 900px; margin: 0 auto 4rem; opacity: 0.95;">
+        <strong>Bahasa paling gampangnya, Trading itu sama seperti berdagang di pasar tradisional. Intinya adalah jual-beli.</strong>
+      </p>
+      <p style="font-size: 1.15rem; line-height: 1.8; max-width: 1000px; margin: 0 auto; opacity: 0.9;">
+        Bayangkan kamu membeli sekarung beras seharga <strong>Rp10.000</strong> hari ini, lalu besok harganya naik jadi <strong>Rp12.000</strong> dan kamu menjualnya. 
+        Selisih <strong>Rp2.000 itulah keuntunganmu</strong>. 
+        <br><br>
+        Bedanya, di dunia trading modern, yang kamu jual-beli <strong>bukan beras fisik</strong>, melainkan <strong>aset digital</strong> lewat HP atau laptop.
+      </p>
+      <div style="text-align: center; margin-top: 3rem;">
+        <i class="fas fa-lightbulb" style="font-size: 3rem; color: #f39c12; margin-bottom: 1rem;"></i>
+        <p style="font-size: 1.2rem; font-weight: 600; color: #25d366;">
+          Berikut adalah jenis-jenis "barang" atau instrumen yang biasanya diperdagangkan:
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Jenis Trading -->
+  <section class="container">
+    <div class="trading-grid">
+      <div class="trading-item forex animate">
+        <i class="fas fa-globe-asia trading-icon"></i>
+        <h3 style="color: #3498db; margin-bottom: 1rem;">1. Forex (Foreign Exchange)</h3>
+        <p style="font-size: 1.1rem; opacity: 0.95;">
+          <strong>Ini adalah trading Mata Uang Asing.</strong>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.9;">
+          <strong>Logikanya:</strong> Kamu menukar Rupiah ke Dollar karena kamu yakin nilai Dollar akan menguat.
+        </p>
+        <p style="margin-top: 1.5rem; font-weight: 600; color: #3498db;">
+          <strong>Contoh:</strong> Memanfaatkan naik-turunnya nilai tukar <strong>USD (Dollar) terhadap IDR (Rupiah)</strong>.
+        </p>
+      </div>
+
+      <div class="trading-item saham animate">
+        <i class="fas fa-chart-line trading-icon"></i>
+        <h3 style="color: #f1c40f; margin-bottom: 1rem;">2. Saham (Stocks)</h3>
+        <p style="font-size: 1.1rem; opacity: 0.95;">
+          <strong>Ini adalah trading Bukti Kepemilikan Perusahaan.</strong>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.9;">
+          <strong>Logikanya:</strong> Kamu membeli "sepotong" kepemilikan dari perusahaan besar.
+        </p>
+        <p style="margin-top: 1.5rem; font-weight: 600; color: #f1c40f;">
+          <strong>Contoh:</strong> Beli saham saat perusahaan baru berkembang, dan jual saat harga sahamnya naik karena perusahaan makin untung. 
+          <em>(BRI, Telkom, Apple)</em>
+        </p>
+      </div>
+
+      <div class="trading-item kripto animate">
+        <i class="fab fa-bitcoin trading-icon"></i>
+        <h3 style="color: #25d366; margin-bottom: 1rem;">3. Kripto (Cryptocurrency)</h3>
+        <p style="font-size: 1.1rem; opacity: 0.95;">
+          <strong>Ini adalah trading Mata Uang Digital.</strong>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.9;">
+          <strong>Logikanya:</strong> Menggunakan teknologi <strong>blockchain</strong> yang tidak diatur oleh bank sentral mana pun.
+        </p>
+        <p style="margin-top: 1.5rem; font-weight: 600; color: #25d366;">
+          <strong>Contoh:</strong> Jual-beli <strong>Bitcoin (BTC)</strong> atau <strong>Ethereum (ETH)</strong>. 
+          <em>Harganya sangat fluktuatif (bisa naik/turun drastis dalam waktu singkat)</em>.
+        </p>
+      </div>
+
+      <div class="trading-item komoditas animate">
+        <i class="fas fa-seedling trading-icon"></i>
+        <h3 style="color: #e67e22; margin-bottom: 1rem;">4. Komoditas (Commodities)</h3>
+        <p style="font-size: 1.1rem; opacity: 0.95;">
+          <strong>Ini adalah trading Bahan Mentah atau Hasil Alam.</strong>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.9;">
+          <strong>Logikanya:</strong> Kamu memperdagangkan harga barang fisik <strong>tanpa harus membawa barangnya ke rumah</strong>.
+        </p>
+        <p style="margin-top: 1.5rem; font-weight: 600; color: #e67e22;">
+          <strong>Contoh:</strong> Yang paling populer adalah <strong>Emas (Gold)</strong>, minyak bumi, atau hasil tani seperti kopi dan gandum.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sistem Trading -->
+  <section class="container">
+    <div class="content-card animate">
+      <h2 style="color: #f39c12;">SISTEM ATAU CARA KERJA TRADING</h2>
+    </div>
+
+    <div class="comparison-container animate">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th><strong>Fitur</strong></th>
+            <th class="spot-col"><strong>SPOT</strong></th>
+            <th class="futures-col"><strong>FUTURES</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Kepemilikan</strong></td>
+            <td class="spot-col">Aset Nyata</td>
+            <td class="futures-col">Kontrak Harga</td>
+          </tr>
+          <tr>
+            <td><strong>Keuntungan</strong></td>
+            <td class="spot-col">Hanya saat naik</td>
+            <td class="futures-col">Bisa naik & turun</td>
+          </tr>
+          <tr>
+            <td><strong>Risiko</strong></td>
+            <td class="spot-col"><span style="color: #25d366;">Rendah (Aman)</span></td>
+            <td class="futures-col"><span style="color: #e74c3c;">Tinggi (Bisa Hangus)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Spot Trading -->
+  <section class="container">
+    <div class="feature-grid">
+      <div class="feature-box spot-box animate">
+        <h3 style="color: #25d366; margin-bottom: 1.5rem; font-size: 1.5rem;">
+          <i class="fas fa-shield-alt"></i> 1. SPOT (Beli Satu Arah)
+        </h3>
+        <p style="font-size: 1.15rem; opacity: 0.95; margin-bottom: 1.5rem;">
+          Ini adalah <strong>metode paling aman untuk pemula</strong>. Ibaratnya kamu beli emas batangan di toko: 
+          <strong>kamu bayar uangnya, kamu dapat barangnya</strong>.
+        </p>
+        <div style="background: rgba(37,211,102,0.2); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #25d366;">
+          <h4 style="color: #25d366; margin-bottom: 1rem;"><strong>Cara Kerjanya:</strong></h4>
+          <p>Kamu membeli aset secara nyata. Kalau harga naik, kamu untung. 
+          Kalau harga turun, <strong>kamu tidak rugi selama barangnya tidak dijual</strong> 
+          (asetmu tetap ada, cuma nilainya berkurang).</p>
+        </div>
+        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
+          <p><strong>✅ Keuntungan:</strong> Tidak ada risiko "likuidasi" (saldo hangus). 
+          Kamu bisa simpan asetnya bertahun-tahun.</p>
+          <p style="color: #e67e22;"><strong>❌ Kekurangan:</strong> Kamu hanya bisa untung kalau harga naik.</p>
+        </div>
+      </div>
+
+      <div class="feature-box futures-box animate">
+        <h3 style="color: #e74c3c; margin-bottom: 1.5rem; font-size: 1.5rem;">
+          <i class="fas fa-chart-line"></i> 2. FUTURES (Kontrak Berjangka)
+        </h3>
+        <p style="font-size: 1.15rem; opacity: 0.95; margin-bottom: 1.5rem;">
+          Ini <strong>bukan beli barangnya</strong>, tapi kamu <strong>"menebak" harga di masa depan</strong>. 
+          Ibaratnya kamu taruhan atau bikin kontrak perjanjian harga.
+        </p>
+        <div style="background: rgba(231,76,60,0.2); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #e74c3c;">
+          <h4 style="color: #e74c3c; margin-bottom: 1rem;"><strong>Cara Kerja:</strong></h4>
+          <p>Kamu bisa untung saat harga <strong>naik (Long)</strong> maupun saat harga <strong>turun (Short)</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-box animate" style="margin-top: 3rem;">
+      <h3 style="color: #f39c12; margin-bottom: 1.5rem; font-size: 1.5rem;">
+        <i class="fas fa-coins"></i> 3. Apa lagi yang lain? (MARGIN)
+      </h3>
+      <p style="font-size: 1.15rem; opacity: 0.95;">
+        Hampir mirip dengan Futures, tapi biasanya dipakai di pasar <strong>Saham atau Crypto tertentu</strong>. 
+        Kamu <strong>meminjam uang ke broker</strong> untuk membeli aset lebih banyak dari yang kamu mampu, 
+        dengan <strong>jaminan saldo yang kamu punya</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Margin vs Leverage -->
+  <section class="container">
+    <div class="content-card animate">
+      <h2 style="color: #f39c12;">MARGIN VS LEVERAGE</h2>
+      <p style="text-align: center; font-size: 1.25rem; margin: 2rem 0 4rem; opacity: 0.95;">
+        <em>Dua istilah ini sering tertukar, padahal fungsinya berbeda:</em>
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-box leverage-box animate">
+        <h3 style="color: #3498db; margin-bottom: 1.5rem; font-size: 1.6rem;">
+          <i class="fas fa-bolt"></i> ⚡ LEVERAGE (Daya)
+        </h3>
+        <p style="font-size: 1.2rem; line-height: 1.6; opacity: 0.95;">
+          Alat untuk <strong>melipatgandakan kekuatan modalmu</strong>.
+        </p>
+        <div style="background: rgba(52,152,219,0.2); padding: 1.5rem; border-radius: 15px; margin-top: 1.5rem; border-left: 4px solid #3498db;">
+          <p style="font-size: 1.3rem; font-weight: 700; color: #3498db; margin-bottom: 0.5rem;">
+            Contoh:
+          </p>
+          <p style="font-size: 1.25rem;"><strong>Leverage 1:100</strong> artinya uang <strong>Rp10rb</strong> kamu bisa membeli aset senilai <strong>Rp1 Juta</strong>.</p>
+        </div>
+      </div>
+
+      <div class="feature-box margin-box animate">
+        <h3 style="color: #e67e22; margin-bottom: 1.5rem; font-size: 1.6rem;">
+          <i class="fas fa-lock"></i> 🔒 MARGIN (Jaminan)
+        </h3>
+        <p style="font-size: 1.2rem; line-height: 1.6; opacity: 0.95;">
+          Jumlah <strong>uang jaminan</strong> yang wajib kamu punya di saldo.
+        </p>
+        <div style="background: rgba(230,126,34,0.2); padding: 1.5rem; border-radius: 15px; margin-top: 1.5rem; border-left: 4px solid #e67e22;">
+          <p style="font-size: 1.3rem; font-weight: 700; color: #e67e22; margin-bottom: 0.5rem;">
+            Ibarat DP (Down Payment)
+          </p>
+          <p style="font-size: 1.25rem;">saat mencicil sesuatu agar transaksi tetap berjalan.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card animate" style="margin-top: 3rem; background: rgba(37,211,102,0.15); border-left: 6px solid #25d366;">
+      <h3 style="color: #25d366; margin-bottom: 1rem; font-size: 1.5rem;">
+        <i class="fas fa-lightbulb"></i> Kesimpulan:
+      </h3>
+      <p style="font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 0;">
+        <span style="color: #3498db;">Leverage</span> adalah <strong>kekuatannya</strong>, sedangkan <span style="color: #e67e22;">Margin</span> adalah <strong>harga tiket masuknya</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Apa itu Leverage -->
+  <section class="container">
+    <div class="content-card animate">
+      <h2 style="color: #f39c12;">APA ITU LEVERAGE?</h2>
+      <p style="font-size: 1.25rem; text-align: center; margin-bottom: 3rem; opacity: 0.95;">
+        Leverage adalah <strong>"Daya Ungkit"</strong> atau pinjaman modal dari broker agar kamu bisa transaksi besar dengan modal kecil.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-box animate" style="border-left-color: #25d366;">
+          <h4 style="color: #25d366; margin-bottom: 1.5rem; font-size: 1.4rem;">
+            <i class="fas fa-rocket"></i> 🚀 Kenapa Bisa Untung Besar?
+          </h4>
+          <div style="font-size: 1.2rem;">
+            <p><strong>Tanpa Leverage:</strong> kenaikan harga 1% hanya memberimu untung <strong>Rp10.000</strong>.</p>
+            <p style="color: #25d366; font-weight: 700; font-size: 1.3rem;">
+              Dengan <strong>Leverage 1:100</strong>, kenaikan 1% tadi bisa berubah menjadi untung <strong>Rp1.000.000 (100x lipat!)</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-box animate" style="border-left-color: #e74c3c;">
+          <h4 style="color: #e74c3c; margin-bottom: 1.5rem; font-size: 1.4rem;">
+            <i class="fas fa-exclamation-triangle"></i> ⚠️ Risiko Pedang Bermata Dua
+          </h4>
+          <div style="font-size: 1.2rem;">
+            <p>Jika harga <strong>turun 1% saja</strong>, modalmu bisa langsung <strong>HABIS (Likuidasi)</strong>.</p>
+            <p style="color: #e74c3c; font-weight: 700; font-size: 1.3rem;">
+              <strong>Leverage mempercepat untung, tapi juga mempercepat rugi.</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 20px; border: 2px solid #f1c40f;">
+        <p style="font-size: 1.4rem; font-weight: 800; color: #f1c40f; margin: 0;">
+          <i class="fas fa-exclamation-circle"></i> Ingat: Gunakan leverage dengan bijak, <strong>jangan serakah!</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fitur Utama Futures -->
+  <section class="container">
+    <div class="content-card animate">
+      <h3 style="color: #f39c12; font-size: 1.8rem; text-align: center; margin-bottom: 2rem;">
+        Fitur Utama (Leverage): Ini yang bikin Futures populer tapi bahaya
+      </h3>
+      <p style="font-size: 1.2rem; max-width: 900px; margin: 0 auto 2rem; text-align: center; opacity: 0.95;">
+        Kamu bisa <strong>meminjam dana dari broker</strong> agar modal kecil bisa transaksi besar 
+        <em>(misal modal $10 bisa jadi seperti $100)</em>.
+      </p>
+      <div style="background: rgba(231,76,60,0.2); padding: 2rem; border-radius: 20px; border-left: 6px solid #e74c3c; margin: 2rem auto; max-width: 800px;">
+        <p style="font-size: 1.25rem; font-weight: 700; color: #e74c3c; margin-bottom: 1rem;">
+          <i class="fas fa-skull-crossbones"></i> Risiko: Ada yang namanya <strong>Likuidasi</strong>
+        </p>
+        <p style="font-size: 1.2rem;">Kalau tebakanmu salah total dan menyentuh batas saldo, 
+        <strong>modalmu bisa hilang seketika (menjadi nol)</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aplikasi Trading -->
+  <section class="container">
+    <div class="content-card animate">
+      <h2>TEMPAT & APLIKASI TRADING</h2>
+      <p style="text-align: center; font-size: 1.25rem; margin-bottom: 4rem; opacity: 0.95;">
+        Untuk memulai, kamu butuh "jembatan" berupa aplikasi Broker. Berikut pilihan terbaiknya:
+      </p>
+    </div>
+
+    <div class="apps-grid">
+      <div class="app-card animate">
+        <i class="fas fa-landmark app-icon" style="color: #3498db;"></i>
+        <h4 style="color: #3498db;">🇮🇩 Saham Indonesia</h4>
+        <p style="font-size: 1.2rem; font-weight: 700; margin: 1rem 0 0.5rem 0;">
+          Ajaib, Stockbit, atau IPOT
+        </p>
+        <p style="opacity: 0.9; font-size: 1rem;">
+          Cocok untuk investasi jangka panjang dan aman karena <strong>diawasi OJK</strong>.
+        </p>
+      </div>
+
+      <div class="app-card animate">
+        <i class="fas fa-chart-area app-icon" style="color: #f1c40f;"></i>
+        <h4 style="color: #f1c40f;">🌍 Forex & Komoditas (Emas)</h4>
+        <p style="font-size: 1.2rem; font-weight: 700; margin: 1rem 0 0.5rem 0;">
+          MetaTrader 4/5 atau TradingView
+        </p>
+        <p style="opacity: 0.9; font-size: 1rem;">
+          Gunakan broker terpercaya seperti <strong>XM, Exness, atau HSB (Lokal/Bappebti)</strong>.
+        </p>
+      </div>
+
+      <div class="app-card animate">
+        <i class="fab fa-bitcoin app-icon" style="color: #25d366;"></i>
+        <h4 style="color: #25d366;">🪙 Cryptocurrency</h4>
+        <p style="font-size: 1.2rem; font-weight: 700; margin: 1rem 0 0.5rem 0;">
+          Indodax, Tokocrypto (Lokal), atau Binance (Global)
+        </p>
+        <p style="opacity: 0.9; font-size: 1rem;">
+          Tempat jual beli <strong>Bitcoin, Ethereum, dan aset digital lainnya</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Peringatan -->
+  <section class="container">
+    <div class="warning-box animate">
+      <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;">
+        <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; margin-right: 1rem;"></i>
+        ⚠️ PERINGATAN PENTING
+      </h3>
+      <p style="font-size: 1.3rem; line-height: 1.6; margin-bottom: 1rem;">
+        <strong>Jangan pernah menitipkan modal ke perorangan.</strong> 
+        Gunakan aplikasi resmi di atas untuk <strong>keamanan dana kamu sendiri!</strong>
+      </p>
+      <p style="font-size: 1.4rem; font-weight: 800; margin: 0;">
+        <i class="fas fa-snowflake"></i> Dan gunakan <strong>uang dingin</strong> yang siap hilang!
+      </p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="whatsapp-hero">
+    <div class="container">
+      <h2 style="font-size: 3rem; margin-bottom: 1.5rem; transform: skewY(0deg);">
+        <i class="fab fa-whatsapp" style="font-size: 3.5rem; margin-right: 1rem;"></i>
+        Siap Mulai Belajar Trading?
+      </h2>
+      <p style="font-size: 1.5rem; margin-bottom: 3rem; opacity: 0.95; transform: skewY(0deg);">
+        Chat sekarang untuk <strong>edukasi GRATIS level 0</strong> dari nol!
+      </p>
+      <a href="https://wa.me/qr/WA7MLAZCEJB7I1?text=Halo%20kak,%20saya%20mau%20tanya%20tentang%20edukasi%20trading%20level%200" 
+         class="cta-button" style="font-size: 1.4rem; padding: 1.5rem 4rem; transform: skewY(0deg);">
+        <i class="fab fa-whatsapp" style="margin-right: 1rem;"></i>
+        <strong>Yuk Chat Sekarang!</strong>
+      </a>
+    </div>
+  </section>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(0,0,0,0.98)';
+        header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.5)';
+      } else {
+        header.style.background = 'rgba(0,0,0,0.95)';
+        header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+      }
+    });
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Parallax effect for hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      const speed = scrolled * 0.5;
+      hero.style.transform = `translateY(${speed}px)`;
+    });
+  </script>
+</body>
+</html>
